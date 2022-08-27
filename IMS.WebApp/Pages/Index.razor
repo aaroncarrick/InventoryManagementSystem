@@ -1,0 +1,47 @@
+﻿@page "/"
+@using IMS.CoreBusiness
+@using IMS.UseCases.Inventories
+@using IMS.UseCases.Inventories.Interfaces
+@inject IViewInventoriesByNameUseCase ViewInventoriesByNameUseCase
+
+
+<PageTitle>Test Page</PageTitle>
+<br />
+<h3 class="display-4 fw-light ">Inventory</h3>
+
+
+   
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+                @foreach (var inv in _inventories)
+                {
+                <tr>
+                    <th scope="row">@inv.InventoryId</th>
+                    <td>@inv.InventoryName</td>
+                    <td>@inv.Price</td>
+                    <td>@inv.Quantity</td>
+                </tr>
+                }
+            
+        </tbody>
+    </table>
+
+
+@code {
+    private List<Inventory> _inventories = new List<Inventory>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _inventories = (await ViewInventoriesByNameUseCase.ExecuteAsync()).ToList();
+    }
+}
+
