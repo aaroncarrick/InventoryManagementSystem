@@ -1,1 +1,2 @@
-# IMS
+# IMS > Inventory Management System
+This is a system for keeping track of products at Super 1 Foods. More to come...
